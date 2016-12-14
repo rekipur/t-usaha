@@ -14,7 +14,7 @@
 					</div>
 
 					<div class="panel-body">
-					<p> <a href="{{ route('authors.create') }}" class="btn btn-success btn-sm"> Tambah</a></p>
+					<p> <a href="{{ route('gurus.create') }}" class="btn btn-success btn-sm"> Tambah</a></p>
 						{!! $html->table(['class'=>'table table-bordered']) !!}
 					</div>
 				</div>
