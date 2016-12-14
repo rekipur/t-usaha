@@ -41,6 +41,7 @@ class GuruController extends Controller
     public function create()
     {
         //
+        return view('gurus.create');
     }
 
     /**
@@ -52,6 +53,13 @@ class GuruController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request, [
+                'nama' => 'required|max:255',
+                'jabatan' => 'required|max:255',
+                'email' => 'required|email|max:255|unique:gurus']);
+        $guru = Guru::create($request->all());
+
+        return redirect()->route('gurus.index');
     }
 
     /**
