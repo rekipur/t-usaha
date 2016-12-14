@@ -56,7 +56,8 @@ class GuruController extends Controller
         $this->validate($request, [
                 'nama' => 'required|max:255',
                 'jabatan' => 'required|max:255',
-                'email' => 'required|email|max:255|unique:gurus']);
+                'email' => 'required|email|max:255|unique:gurus',
+                'alamat' => 'required']);
         $guru = Guru::create($request->all());
 
         return redirect()->route('gurus.index');
