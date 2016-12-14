@@ -1,4 +1,4 @@
-<div class="form-group{{'$erros->has('nama') ? ' has-error':'' }}">
+<div class="form-group{{ $errors->has('nama') ? ' has-error':'' }}">
 	{!! Form::label('nama', 'Nama', ['class'=>'col-md-2 control-label']) !!}
 	<div class="col-md-4">
 		{!! Form::text('nama', null, ['class'=>'form-control']) !!}
@@ -6,7 +6,7 @@
 	</div>
 </div>
 
-<div class="form-group{{'$erros->has('jabatan') ? ' has-error':'' }}">
+<div class="form-group{{ $errors->has('jabatan') ? ' has-error':'' }}">
 	{!! Form::label('jabatan', 'Jabatan', ['class'=>'col-md-2 control-label']) !!}
 	<div class="col-md-4">
 		{!! Form::text('jabatan', null, ['class'=>'form-control']) !!}
