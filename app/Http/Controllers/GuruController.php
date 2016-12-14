@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Guru;
 use Yajra\Datatables\Html\Builder;
 use Yajra\Datatables\Datatables;
+use Session;
 
 class GuruController extends Controller
 {
@@ -58,8 +59,11 @@ class GuruController extends Controller
                 'jabatan' => 'required|max:255',
                 'email' => 'required|email|max:255|unique:gurus',
                 'alamat' => 'required']);
-        $guru = Guru::create($request->all());
-
+        $guru = Guru::create($request->only('nama','jabatan','email','alamat'));
+       Session::flash("flash_notification", [
+                    "level"=>"success",
+                    "message"=>"$guru->nama telah ditambahkan sebagai guru"
+                ]);
         return redirect()->route('gurus.index');
     }
 
