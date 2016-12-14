@@ -15,16 +15,16 @@
 </div>
 
 <div class="form-group{{ $errors->has('email') ? 'has-error' : '' }}">
-    {!! Form::label('email', 'E-mail', ['class'=>'col-md-4 control-label']) !!}
-	<div class="col-md-6">
+    {!! Form::label('email', 'E-mail', ['class'=>'col-md-2 control-label']) !!}
+	<div class="col-md-4">
         {!! Form::text('email', null, ['class'=>'form-control']) !!}
         {!! $errors->first('email', '<p class="help-block">:message</p>') !!}
     </div>
 </div> 
 
 <div class="form-group{{ $errors->has('alamat') ? 'has-error' : '' }}">
-    {!! Form::label('alamat', 'Alamat', ['class'=>'col-md-4 control-label']) !!}
-	<div class="col-md-6">
+    {!! Form::label('alamat', 'Alamat', ['class'=>'col-md-2 control-label']) !!}
+	<div class="col-md-4">
         {!! Form::textarea('alamat', null, ['class'=>'form-control']) !!}
         {!! $errors->first('alamat', '<p class="help-block">:message</p>') !!}
     </div>
