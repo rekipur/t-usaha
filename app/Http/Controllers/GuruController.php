@@ -20,7 +20,12 @@ class GuruController extends Controller
         if ($request->ajax()) {
             # code...
             $gurus = Guru::select(['id','nama', 'jabatan', 'email', 'alamat']);
-            return DataTables::of($gurus)->make(true);
+            return Datatables::of($gurus)
+            ->addColumn('action', function ($guru){
+                return view('datatable._action', [
+                        'edit_url' => route('gurus.edit', $guru->id),
+                    ]);
+            })->make(true);
         }
         //
 
@@ -29,7 +34,7 @@ class GuruController extends Controller
         ->addColumn(['data'=>'jabatan', 'name'=>'jabatan', 'title'=>'Jabatan'])
         ->addColumn(['data'=>'email', 'name'=>'email', 'title'=>'E-mail'])
         ->addColumn(['data'=>'alamat', 'name'=>'alamat', 'title'=>'Alamat'])
-        ;
+        ->addColumn(['data'=>'action', 'name'=>'action', 'title'=>'Pilihan', 'orderable'=>false, 'searchable'=>false]);
 
         return view('gurus.index')->with(compact('html'));
     }
@@ -87,6 +92,8 @@ class GuruController extends Controller
     public function edit($id)
     {
         //
+        $guru = Guru::find($id);
+        return view('gurus.edit')->with(compact('guru'));
     }
 
     /**
@@ -98,7 +105,19 @@ class GuruController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, ['nama' => 'required|max:255'. $id,
+            'jabatan'=>'required|max:255',
+            'email'=>'required|email|max:255|unique:gurus',
+            'alamat'=>'required'
+            ]);
+        $guru = Guru::find($id);
+        $guru->update($request->only('nama','jabatan','email','alamat'));
+        Session::flash("flash_notification", [
+                'level'=>'success',
+                'message'=>"Berhasil Menyimpan $guru->nama"
+            ]);
+
+        return redirect()->route('gurus.index');
     }
 
     /**

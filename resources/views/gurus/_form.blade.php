@@ -32,6 +32,6 @@
 
 <div class="form-group">
 	<div class="col-md-4 col-md-offset-2">
-		{!! Form::submit('Simpan', ['class'=>'btn btn info']) !!}
+		{!! Form::submit('Simpan', ['class'=>'btn btn-success btn-sm']) !!}
 	</div>
 </div>
